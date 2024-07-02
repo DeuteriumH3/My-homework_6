@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Case 2</title>
+    </head>
+    <body>
+    <script>
+        "use strict";
+
+        /*2. Осуществить табулирование функции y(x) = 
+        на отрезке [a,b] с шагом h. Границы отрезка и шаг вводятся пользователеме. Осуществить проверку корректности вводимых
+        пользователем данных. В случае некорректно введённых данных сообщать об ошибке и заново запрашивать у пользователя ввод
+        данных. Решить задачу, используя цикл с постусловием.*/
+
+        function calculateY(x) {
+        let y;
+
+        if (x <= -1) {
+            y = -Math.pow(x, 2) - 4 * x - 3;
+        } else if (1 < x <= 1) {
+            y = x + 1;
+        } else if (x > 1) {
+            y = 2 / x;
+        } else {
+            y = null;
+        }
+
+        return y;
+        }
+
+        let a;
+        let b;
+        let h;
+
+        while (true) {
+        a = parseFloat(prompt("Введите левую границу отрезка (a):"));
+
+        if (isNaN(a)) {
+            alert("Ошибка! Введите число для левой границы.");
+            continue;
+        }
+
+        b = parseFloat(prompt("Введите правую границу отрезка (b):"));
+
+        if (isNaN(b)) {
+            alert("Ошибка! Введите число для правой границы.");
+            continue;
+        }
+
+        h = parseFloat(prompt("Введите шаг (h):"));
+        
+        if (isNaN(h) || h <= 0) {
+            alert("Ошибка! Введите положительное число для шага.");
+            continue;
+        }
+
+        if (a >= b) {
+            alert("Ошибка! Левая граница должна быть меньше правой.");
+            continue;
+        }
+
+        break;
+        }
+
+        let xValues = "x: ";
+        let yValues = "y: ";
+
+        let x = a;
+        while (x <= b) {
+        let y = calculateY(x);
+        xValues += x.toFixed(2) + " ";
+        yValues += y.toFixed(2) + " ";
+        x += h;
+        }
+
+        console.log(xValues);
+        console.log(yValues);
+    </script>
+    </body>
+</html>
